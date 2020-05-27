@@ -18,13 +18,18 @@ module.exports = app => {
   router.post('articles', '/api/addArticle', jwtErr, controller.article.add);
   router.post('articles', '/api/deleteArticle', jwtErr, controller.article.delete);
   router.post('articles', '/api/updateArticle', jwtErr, controller.article.update);
+  router.post('articles', '/api/articleChangeStatus', jwtErr, controller.article.changeStatus);
 
   router.post('articleCate', '/api/articleCate', jwtErr, controller.articleCate.select);
   router.post('articleCate', '/api/articleCateAdd', jwtErr, controller.articleCate.add);
   router.post('articleCate', '/api/articleCateUpdate', jwtErr, controller.articleCate.update);
   router.post('articleCate', '/api/articleCateDelete', jwtErr, controller.articleCate.delete);
 
-  router.post('articles', '/api/articleLabel', jwtErr, controller.articleLabel.select);
+  router.post('articleLabel', '/api/articleLabel', jwtErr, controller.articleLabel.select);
+  router.post('articleLabel', '/api/articleLabelAdd', jwtErr, controller.articleLabel.add);
+  router.post('articleLabel', '/api/articleLabelUpdate', jwtErr, controller.articleLabel.update);
+  router.post('articleLabel', '/api/articleLabelDelete', jwtErr, controller.articleLabel.delete);
+
 };
 
 // module.exports = app => {

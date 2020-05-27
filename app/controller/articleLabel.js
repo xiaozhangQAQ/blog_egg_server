@@ -18,6 +18,30 @@ class ArticleLabelController extends Controller {
         ctx.body = datas;
         ctx.status = 202;
     }
+
+    async add(){
+        const { ctx,app} = this;
+        let datas = await ctx.service.articleLabel.add(ctx.request.body);
+        // 设置响应体和状态码
+        ctx.body = datas;
+        ctx.status = 202;
+    }
+
+    async update(){
+        const { ctx,app} = this;
+        let datas = await ctx.service.articleLabel.update(ctx.request.body);
+        // 设置响应体和状态码
+        ctx.body = datas;
+        ctx.status = 202;
+    }
+
+    async delete(){
+        const { ctx,app} = this;
+        let datas = await ctx.service.articleLabel.delete(ctx.request.body);
+        // 设置响应体和状态码
+        ctx.body = datas;
+        ctx.status = 202;
+    }
 }
 
 module.exports = ArticleLabelController;

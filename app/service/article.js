@@ -20,10 +20,15 @@ class ArticleService extends Service {
       //       "uid":mongoose.Types.ObjectId(params.uid)
       //     }
       //   }
-      // ]);     
-      let datas = await this.ctx.model.Article.find(params).populate([
+      // ]);   
+      let datas = await this.ctx.model.Article.find({uid:'5ebca743ba6c2d2f2cb5e627'}).populate([
         {path:'tid lid',select:'_id name'}
       ])
+      .skip((params.page-1) * params.limit)
+      .limit(params.limit)
+      .sort({'_id':-1});
+      
+      let counts = await this.ctx.model.Article.count();
 
       let outArr = [];
       // console.log(datas)
@@ -38,7 +43,9 @@ class ArticleService extends Service {
       result={
         code:20000,
         data:{
-          list: outArr
+          list: outArr,
+          total:counts,
+          limit:params.limit
         },
         errmsg:'success'
       };
@@ -55,7 +62,7 @@ class ArticleService extends Service {
         }
       }
       params = Object.assign({},{createTime:this.ctx.helper.formatTime(new Date())},params);
-      let datas = await this.ctx.model.Article.create(params);
+      await this.ctx.model.Article.create(params);
       result={
         code:20000,
         data:[],
@@ -90,6 +97,20 @@ class ArticleService extends Service {
       let titleId = params.titleId;
       delete params.titleId;
       let datas = await this.ctx.model.Article.update({_id:titleId},params);
+      result={
+        code:20000,
+        data:[],
+        errmsg:'success'
+      };
+      return result;
+    }
+
+    async changeStatus(params){
+      const { mongoose } = this.app;
+      let result = {};
+      let _id = params._id;
+      delete params._id;
+      let datas = await this.ctx.model.Article.update({_id},params);
       result={
         code:20000,
         data:[],

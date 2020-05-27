@@ -42,6 +42,15 @@ class ArticleController extends Controller {
         ctx.body = datas;
         ctx.status = 202;
     }
+
+    async changeStatus(){
+        const ctx = this.ctx;
+        const datas = await ctx.service.article.changeStatus(ctx.request.body);
+        // console.log(datas)
+        // 设置响应体和状态码
+        ctx.body = datas;
+        ctx.status = 202;
+    }
 }
 
 module.exports = ArticleController;
