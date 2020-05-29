@@ -4,12 +4,13 @@ class ArticleLabelService extends Service {
     async select(params) {
       const { mongoose } = this.app;
       let result = {};
+      console.log(params)
       let datas = await this.ctx.model.ArticleLabel.find({
-        $or : [ //多条件，数组
-          {nick : {$regex : reg}}
+        $or:[
+          {name:{$regex:params.searchVal || ''}}
         ]
-    });
-    //   console.log(params)
+      });
+      console.log(datas)
       result={
         code:20000,
         data:datas,

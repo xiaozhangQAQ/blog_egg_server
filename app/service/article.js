@@ -5,30 +5,21 @@ class ArticleService extends Service {
     async select(params) {
       const { mongoose } = this.app;
       const _this = this;
-      let result = {};
-      // let datas = await this.ctx.model.Article.aggregate([
-      //   {
-      //     $lookup: {
-      //       from: "article_cate",
-      //       localField: "tid",
-      //       foreignField: "_id",
-      //       as: "category"
-      //     }
-      //   },  
-      //   {
-      //     $match:{
-      //       "uid":mongoose.Types.ObjectId(params.uid)
-      //     }
-      //   }
-      // ]);   
-      let datas = await this.ctx.model.Article.find({uid:'5ebca743ba6c2d2f2cb5e627'}).populate([
+      let result = {}; 
+      console.log(params)
+      let _filter = [
+          // {_id:nid},
+          {title:{$regex:params.stitle || ''}}
+        ];
+      
+      let datas = await this.ctx.model.Article.find({uid:'5ebca743ba6c2d2f2cb5e627'}).or(_filter).populate([
         {path:'tid lid',select:'_id name'}
       ])
       .skip((params.page-1) * params.limit)
       .limit(params.limit)
       .sort({'_id':-1});
       
-      let counts = await this.ctx.model.Article.count();
+      let counts = await this.ctx.model.Article.find({uid:'5ebca743ba6c2d2f2cb5e627'}).or(_filter).count();
 
       let outArr = [];
       // console.log(datas)
