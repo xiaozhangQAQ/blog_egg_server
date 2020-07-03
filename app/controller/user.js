@@ -12,6 +12,7 @@ class UserController extends Controller {
         // ctx.validate(createRule, ctx.request.body);
         // 调用 service 创建一个 topic
         // console.log(logintoken)
+        // console.log(ctx.request.body)
         let datas = await ctx.service.user.selectUser(ctx.request.body);
         // console.log(datas.data)
         if(datas.data){

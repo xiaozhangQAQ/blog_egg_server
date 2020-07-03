@@ -22,7 +22,14 @@ module.exports = appInfo => {
   const userConfig = {
     // myAppName: 'egg',
   };
-  
+  config.cluster = {
+    "listen": {
+      "path": "",
+      "port": 7002,
+      "hostname": ""
+    }
+};
+
   config.mongoose = {
     client: {
       url: 'mongodb://127.0.0.1/blog',

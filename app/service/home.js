@@ -8,7 +8,7 @@ class HomeService extends Service {
       result={
         code:20000,
         data:{
-            total:datas
+          total:datas
         },
         errmsg:'success'
       };

@@ -14,10 +14,11 @@ class userService extends Service {
 
 
         let result = {};
-        // console.log(params)
+        console.log(params)
         let datas = await this.ctx.model.User.findOne(params);
-        if(datas._doc){
-            result={code:20000,data:{...datas._doc},
+        console.log(datas)
+        if(datas){
+            result={code:20000,data:{...datas._doc,roles:datas._doc.roles},
             errmsg:'success'};
             return result;
         }  

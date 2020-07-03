@@ -8,16 +8,18 @@ module.exports = (options) => {
             decode = ctx.app.jwt.verify(token, options.secret);
             await next();
           } catch (error) {
-            ctx.status = 401;
+            ctx.status = 202;
             ctx.body = {
-              message: error.message,
+              message: 'token错误',
+              code:50012
             };
             return;
           }
         } else {
-          ctx.status = 401;
+          ctx.status = 202;
           ctx.body = {
             message: '没有token',
+            code:50012
           };
           return;
         }
