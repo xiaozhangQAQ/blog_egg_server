@@ -4,7 +4,6 @@ class ArticleCateService extends Service {
     async select(params) {
       const { mongoose } = this.app;
       let result = {};
-      console.log(params);
       // var nid = params.nid == ''? null:mongoose.Types.ObjectId(params.nid);    
       // console.log(objid);
       let _filter = {

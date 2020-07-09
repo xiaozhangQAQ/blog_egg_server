@@ -6,7 +6,6 @@ class ArticleService extends Service {
       const { mongoose } = this.app;
       const _this = this;
       let result = {}; 
-      console.log(params)
       let _filter = [
           // {_id:nid},
           {title:{$regex:params.stitle || ''}}
@@ -43,6 +42,38 @@ class ArticleService extends Service {
       return result;     
     };
     
+    async selectArtById(params){
+
+      const { mongoose } = this.app;
+      const _this = this;
+      let result = {}; 
+     
+      let datas = await this.ctx.model.Article.findOne(params).populate([
+        {path:'tid lid',select:'_id name'}
+      ]) 
+      console.log(datas) 
+      let outs = {};
+      outs.article = datas;
+      outs.category = datas.tid;
+      outs.tags = datas.lid;
+      // console.log(datas)
+      // datas.forEach((item,index)=>{
+      //   let objs ={
+      //     article:item,
+      //     category: item.tid,
+      //     tags: item.lid
+      //   }
+      //   outArr.push(objs);
+      // })
+      
+      result={
+        code:20000,
+        data:outs,
+        errmsg:'success'
+      };
+      return result;      
+    }
+
     async add(params){
       const { mongoose } = this.app;
       let result = {};

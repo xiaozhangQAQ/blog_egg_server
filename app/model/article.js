@@ -11,6 +11,7 @@ module.exports = app => {
     status: { type: String,default:'1' },  //文章状态 0上架  1下架
     tid: { type: Schema.Types.ObjectId, ref:'ArticleCate'},  //类型id
     lid: [{ type: Schema.Types.ObjectId, ref:'ArticleLabel' }],  //标签id
+    titleImage:{type: String}, //文章封面
     content: { type: String },  //内容
     contentCode: { type: String },  //内容markdowm
     createTime:{ type: Date } //创建时间

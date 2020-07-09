@@ -21,6 +21,7 @@ module.exports = appInfo => {
   // add your user config here
   const userConfig = {
     // myAppName: 'egg',
+    
   };
   config.cluster = {
     "listen": {
@@ -52,6 +53,16 @@ module.exports = appInfo => {
   
   config.jwt = {  //jwt配置项
     secret: "123456"
+  }
+
+  // config.multipart={
+  //   fileExtensions: [ 'blob' ] // 增加对blob文件支持
+  // }
+
+  config.qiniu={
+    AccessKey:'ByLHJMPzIxxBgvsv6qaCUYFwo-4t8b2SxE22UzZ3',
+    SecretKey:'fOU99lxpcb4eT_7jHQsmPVHveWI9yVRLjl5oOh7Z',
+    bucket:'zjmblog'
   }
 
   return {

@@ -9,7 +9,7 @@ class SysMenuService extends Service {
       
       let datas = await this.ctx.model.SysMenu.find().sort({'sort':0});
   
-      console.log(datas)
+      // console.log(datas)
       result={
         code:20000,
         data:datas,
